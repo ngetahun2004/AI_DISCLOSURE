@@ -1,0 +1,23 @@
+# Input line | Expected result
+connecting to 192.168.1.1 now | 192.168.1.1; decimal=3232235777; port=none
+server=10.0.0.255:8080end | 10.0.0.255; decimal=167772415; port=8080
+192a168.1.1.1 | 168.1.1.1; decimal=2818638081; port=none
+192.168.1.1. | invalid (adjacent period)
+192.168.01.1 | invalid (leading zero)
+1.2.3.4:99999 | invalid (port out of range)
+12.34.56 | invalid (too few octets)
+no number here | invalid
+0.0.0.0 | 0.0.0.0; decimal=0; port=none
+255.255.255.255:65535 | 255.255.255.255; decimal=4294967295; port=65535
+1.2.3.4:0 | 1.2.3.4; decimal=16909060; port=0
+1.2.3.4:00 | invalid (port leading zero)
+1.2.3.4:65536 | invalid (port out of range)
+1.2.3.4:123456 | invalid (port too many digits)
+1..2.3.4 | invalid (empty octet)
+1.2.3.4: | invalid (empty port)
+1.2.3.4:80:90 | invalid (second colon)
+1.2.3.4.. | invalid (adjacent periods)
+999.2.3.4 | invalid (octet out of range)
+1.2.3.4.5 | invalid (too many octets)
+1.2.3.4:80, 5.6.7.8 | first valid token: 1.2.3.4; decimal=16909060; port=80
+END | prints Program terminated.
